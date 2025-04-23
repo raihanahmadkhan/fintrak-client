@@ -1,5 +1,5 @@
 // Centralized API for backend calls
-const API_BASE = 'http://localhost:5000/api';
+const API_BASE = import.meta.env.VITE_API_URL;
 
 export async function login(email, password) {
   const res = await fetch(`${API_BASE}/auth/login`, {
