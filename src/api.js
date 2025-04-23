@@ -2,23 +2,55 @@
 const API_BASE = import.meta.env.VITE_API_URL;
 
 export async function login(email, password) {
-  const res = await fetch(`${API_BASE}/auth/login`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email, password })
-  });
-  if (!res.ok) throw new Error((await res.json()).error || 'Login failed');
-  return res.json();
+  try {
+    const res = await fetch(`${API_BASE.replace(/\/api$/, '')}/api/auth/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password })
+    });
+    
+    // Check if response is JSON
+    const contentType = res.headers.get('content-type');
+    if (!contentType || !contentType.includes('application/json')) {
+      throw new Error(`API returned non-JSON response. Please check the API URL: ${API_BASE}`);
+    }
+    
+    if (!res.ok) {
+      const errorData = await res.json();
+      throw new Error(errorData.error || 'Login failed');
+    }
+    
+    return res.json();
+  } catch (error) {
+    console.error('Login error:', error);
+    throw error;
+  }
 }
 
 export async function signup({ name, email, password, role, manager, phone }) {
-  const res = await fetch(`${API_BASE}/auth/signup`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ name, email, password, role, manager, phone })
-  });
-  if (!res.ok) throw new Error((await res.json()).error || 'Signup failed');
-  return res.json();
+  try {
+    const res = await fetch(`${API_BASE.replace(/\/api$/, '')}/api/auth/signup`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, password, role, manager, phone })
+    });
+    
+    // Check if response is JSON
+    const contentType = res.headers.get('content-type');
+    if (!contentType || !contentType.includes('application/json')) {
+      throw new Error(`API returned non-JSON response. Please check the API URL: ${API_BASE}`);
+    }
+    
+    if (!res.ok) {
+      const errorData = await res.json();
+      throw new Error(errorData.error || 'Signup failed');
+    }
+    
+    return res.json();
+  } catch (error) {
+    console.error('Signup error:', error);
+    throw error;
+  }
 }
 
 export function setToken(token) {
@@ -46,7 +78,7 @@ export async function fetchWithAuth(url, options = {}) {
 
 export async function updateProfile({ name, password }) {
   const token = getToken();
-  const res = await fetch(`${API_BASE}/users/me`, {
+  const res = await fetch(`${API_BASE.replace(/\/api$/, '')}/api/users/me`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
@@ -65,7 +97,7 @@ export async function getMyExpenses() {
 }
 
 export async function getManagers() {
-  const res = await fetch(`${API_BASE}/users/managers`);
+  const res = await fetch(`${API_BASE.replace(/\/api$/, '')}/api/users/managers`);
   if (!res.ok) throw new Error('Failed to fetch managers');
   return res.json();
 }
