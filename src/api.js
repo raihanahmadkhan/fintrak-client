@@ -125,7 +125,7 @@ export async function getAllExpenses() {
 }
 
 export async function getAllEmployees() {
-  const res = await fetchWithAuth('/users');
+  const res = await fetchWithAuth('/api/users');
   if (!res.ok) throw new Error('Failed to fetch employees');
   const users = await res.json();
   return users.filter(u => u.role === 'employee');
