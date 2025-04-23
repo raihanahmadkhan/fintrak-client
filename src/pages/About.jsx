@@ -153,7 +153,7 @@ const About = ({ user }) => {
                 </Typography>
               </Box>
               <Typography paragraph>
-                Founded in 2025, FinTrak emerged from the frustration of manual expense reporting processes. Our founders experienced firsthand the inefficiencies of traditional expense management systems.
+              Founded in 2025, FinTrak was born out of the frustration my teammates at ZIDIO Development and I faced with outdated, manual expense reporting processes. We experienced firsthand just how inefficient and time-consuming traditional expense management systems can be—so we decided to build something better.
               </Typography>
               <Typography>
                 After consulting with businesses of various sizes, we developed FinTrak to address common pain points and create a user-friendly solution that works for employees, managers, and administrators alike.

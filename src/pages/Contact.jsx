@@ -289,7 +289,7 @@ const Contact = ({ user }) => {
                     Our Location
                   </Typography>
                   <Typography color={mode === 'dark' ? 'rgba(255,255,255,0.7)' : 'text.secondary'}>
-                    XYZ Street<br />
+                    Hazaribagh, JH<br />
                     India
                   </Typography>
                 </Box>
@@ -302,8 +302,7 @@ const Contact = ({ user }) => {
                     Email Address
                   </Typography>
                   <Typography color={mode === 'dark' ? 'rgba(255,255,255,0.7)' : 'text.secondary'}>
-                    support@fintrak.com<br />
-                    info@fintrak.com
+                    raihanhzb@gmail.com
                   </Typography>
                 </Box>
               </Box>
@@ -315,8 +314,7 @@ const Contact = ({ user }) => {
                     Phone Number
                   </Typography>
                   <Typography color={mode === 'dark' ? 'rgba(255,255,255,0.7)' : 'text.secondary'}>
-                    +1 (555) 123-4567<br />
-                    +1 (555) 765-4321
+                    +91 9006494884
                   </Typography>
                 </Box>
               </Box>
