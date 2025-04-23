@@ -3,7 +3,7 @@ const API_BASE = import.meta.env.VITE_API_URL;
 
 export async function login(email, password) {
   try {
-    const res = await fetch(`${API_BASE.replace(/\/api$/, '')}/api/auth/login`, {
+    const res = await fetch(`${API_BASE}/api/auth/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password })
@@ -29,7 +29,7 @@ export async function login(email, password) {
 
 export async function signup({ name, email, password, role, manager, phone }) {
   try {
-    const res = await fetch(`${API_BASE.replace(/\/api$/, '')}/api/auth/signup`, {
+    const res = await fetch(`${API_BASE}/api/auth/signup`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name, email, password, role, manager, phone })
@@ -78,7 +78,7 @@ export async function fetchWithAuth(url, options = {}) {
 
 export async function updateProfile({ name, password }) {
   const token = getToken();
-  const res = await fetch(`${API_BASE.replace(/\/api$/, '')}/api/users/me`, {
+  const res = await fetch(`${API_BASE}/api/users/me`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
@@ -91,19 +91,19 @@ export async function updateProfile({ name, password }) {
 }
 
 export async function getMyExpenses() {
-  const res = await fetchWithAuth('/expenses/mine');
+  const res = await fetchWithAuth('/api/expenses/mine');
   if (!res.ok) throw new Error('Failed to fetch expenses');
   return res.json();
 }
 
 export async function getManagers() {
-  const res = await fetch(`${API_BASE.replace(/\/api$/, '')}/api/users/managers`);
+  const res = await fetch(`${API_BASE}/api/users/managers`);
   if (!res.ok) throw new Error('Failed to fetch managers');
   return res.json();
 }
 
 export async function createExpense({ date, category, amount, description }) {
-  const res = await fetchWithAuth('/expenses', {
+  const res = await fetchWithAuth('/api/expenses', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ date, category, amount, description })
@@ -113,13 +113,13 @@ export async function createExpense({ date, category, amount, description }) {
 }
 
 export async function getTeamExpenses() {
-  const res = await fetchWithAuth('/expenses/team');
+  const res = await fetchWithAuth('/api/expenses/team');
   if (!res.ok) throw new Error('Failed to fetch team expenses');
   return res.json();
 }
 
 export async function getAllExpenses() {
-  const res = await fetchWithAuth('/expenses');
+  const res = await fetchWithAuth('/api/expenses');
   if (!res.ok) throw new Error('Failed to fetch all expenses');
   return res.json();
 }
